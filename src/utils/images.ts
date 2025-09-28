@@ -1,0 +1,9 @@
+// export const TOP_SPLASH_IMAGE = require('../../assets/images/top_splash.png');
+// export const TOP_SPLASH_IMAGE2 = require('../../assets/images/top_splash_2.png');
+// export const COMPANY_SYMBOL = require('../../assets/images/company-symbol.png');
+// export const ABIS_LOGO = require('../../assets/images/abis_logo.png');
+// export const CRM_MOBILE = require('../../assets/images/crm_mobile_login_background.png');
+// export const LEFT_MENU = require('../../assets/images/menu-left.png');
+// export const DEFAULT_IMAGE = require('../../assets/images/default-image.jpg');
+// export const SYNC_PAGE = require('../../assets/images/sync_page.png');
+// export const DEFAULT_PROFILE = require('../../assets/images/default_profile.jpeg');
