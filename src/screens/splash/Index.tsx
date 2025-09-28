@@ -1,39 +1,22 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import React, { useEffect } from 'react';
-import Style from './Style';
-import { asyncGetAuth, asyncGetUser } from '../../storage/asyncStorage';
-import { useAppDispatch } from '../../store/hooks';
-import { addUser } from '../../store/slices/user';
-import { setAuth } from '../../store/slices/authentication';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../App';
 
-const Splash = (props: any) => {
-  const { navigation } = props;
-  const dispatch = useAppDispatch();
+type Props = NativeStackScreenProps<RootStackParamList, 'Splash'>;
+
+const Splash = ({ navigation }: Props) => {
   useEffect(() => {
-    (async () => {
-      let user = await asyncGetUser();
-      let authorization = await asyncGetAuth();
+    const timer = setTimeout(() => {
+      navigation.replace('Login'); // move to login after 2s
+    }, 2000);
 
-      setTimeout(() => {
-        if (authorization && user) {
-          dispatch(addUser(user));
-          dispatch(setAuth(authorization));
-
-          if (!user.todayAttendance?.inTime) {
-            navigation.navigate('Login');
-          } else {
-            navigation.navigate('Drawer');
-          }
-        } else {
-          navigation.navigate('Login');
-        }
-      }, 3000)
-    })()
-  }, []);
+    return () => clearTimeout(timer);
+  }, [navigation]);
 
   return (
-    <View style={Style.container}>
-      <Image source={require('../../../assets/images/logo.png')} style={Style.logo} />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 20 }}>Splash Screen</Text>
     </View>
   );
 };
