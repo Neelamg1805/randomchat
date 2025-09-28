@@ -8,7 +8,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Splash'>;
 const Splash = ({ navigation }: Props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('Login'); // move to login after 2s
+      navigation.replace('Login');
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -16,7 +16,6 @@ const Splash = ({ navigation }: Props) => {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 20 }}>Splash Screen</Text>
     </View>
   );
 };
