@@ -1,7 +1,8 @@
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import React, { useEffect } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../App';
+import Style from './Style';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Splash'>;
 
@@ -15,7 +16,11 @@ const Splash = ({ navigation }: Props) => {
   }, [navigation]);
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={Style.container}>
+      {/* <Image source={LOGO} style={Style.logo} />
+       */}
+      <Text >Random Chat Pro</Text>
+      <Text >Connect with random people around the world!</Text>
     </View>
   );
 };
