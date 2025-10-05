@@ -1,20 +1,29 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import Header from '../../components/header/Index'
-import { SafeAreaView } from 'react-native-safe-area-context'
-function Index() {
-  const navigation = useNavigation();
-  
+import SafeAreaViewWrapper from '../../components/safeAreaViewWrapper/Index'
+
+function Index({ navigation }: any) {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-    <View style={{ flex: 1 }}>
+    <SafeAreaViewWrapper >
       <Header navigation={navigation} type="menu" title="Home" />
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home Screen</Text>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>Home Screen</Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#007AFF',
+              padding: 15,
+              borderRadius: 8,
+              marginTop: 20
+            }}
+            onPress={() => navigation.navigate('Chat')}
+          >
+            <Text style={{ color: 'white', fontSize: 16 }}>Go to Chat</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    </SafeAreaView>
+    </SafeAreaViewWrapper>
   )
 }
 

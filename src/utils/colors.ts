@@ -1,5 +1,5 @@
 export default {
-    STATUSBAR: "#005E02",
+    STATUSBAR: "#8B5CF6",
     HEADER: "#000",
     HEADER_LABEL: "#000",
     DEFAULT: "#DCDCDC",

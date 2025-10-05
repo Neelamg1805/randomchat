@@ -11,12 +11,11 @@ const Login = ({ navigation }: Props) => {
 
   const handleSubmit = () => {
     if (!name || !gender) {
-      // alert('Please enter your name and select gender');
       return;
     }
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Drawer' }, { name: 'Chat' }],
+      routes: [{ name: 'Drawer' }],
     });
   };
 
@@ -27,7 +26,6 @@ const Login = ({ navigation }: Props) => {
           <View style={styles.headerContainer}>
             <Text style={styles.title}>Login</Text>
           </View>
-
           <View style={styles.formContainer}>
             <View style={styles.inputContainer}>
               <TextInput
@@ -38,14 +36,11 @@ const Login = ({ navigation }: Props) => {
                 style={styles.textInput}
               />
             </View>
-
             <Text style={styles.genderLabel}>Select Gender:</Text>
-
             <View style={styles.genderContainer}>
               <TouchableOpacity
                 style={[styles.genderOption, gender === 'male' && styles.genderOptionSelected]}
-                onPress={() => setGender('male')}
-              >
+                onPress={() => setGender('male')}>
                 <View style={[styles.genderIcon, { backgroundColor: colors.PURPLE_LIGHT }]}>
                   <Text style={styles.genderIconText}>👨</Text>
                 </View>
@@ -54,8 +49,7 @@ const Login = ({ navigation }: Props) => {
 
               <TouchableOpacity
                 style={[styles.genderOption, gender === 'female' && styles.genderOptionSelected]}
-                onPress={() => setGender('female')}
-              >
+                onPress={() => setGender('female')}>
                 <View style={[styles.genderIcon, { backgroundColor: colors.PURPLE_ACCENT }]}>
                   <Text style={styles.genderIconText}>👩</Text>
                 </View>

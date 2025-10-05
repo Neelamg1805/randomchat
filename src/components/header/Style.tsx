@@ -9,7 +9,7 @@ const Style = StyleSheet.create({
     flexDirection: 'row',
   },
   headerContainer: {
-    backgroundColor: colors.PRIMARY,
+    backgroundColor: colors.STATUSBAR,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row'
