@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  AppState
 } from 'react-native';
 import colors from '../../utils/colors';
 import QuestionnaireCard from '../../components/questionnaireCard/Index';
@@ -12,6 +13,7 @@ import AttachmentMenu from '../../components/attachmentMenu/Index';
 import Header from '../../components/header/Index';
 import SafeAreaViewWrapper from '../../components/safeAreaViewWrapper/Index';
 import styles from './Style';
+import { checkForUpdates } from '../../utils/functions';
 interface Message {
   id: string;
   text: string;
@@ -32,7 +34,28 @@ const Chat = ({ navigation }: any) => {
   const [inputText, setInputText] = useState('');
   const [showAttachmentMenu, setShowAttachmentMenu] = useState(false);
   const [questionnaireCompleted, setQuestionnaireCompleted] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
 
+  useEffect(() => {
+    const checkUpdates = async () => {
+      const needsUpdate: any = await checkForUpdates();
+      if (!needsUpdate) {
+        setIsUpdating(false);
+      } else {
+        setIsUpdating(true);
+      }
+    };
+
+    const appStateListener = AppState.addEventListener('change', async (state) => {
+      if (state === 'active') {
+        await checkUpdates();
+      }
+    });
+
+    return () => {
+      appStateListener.remove();
+    };
+  }, []);
   const handleSendMessage = () => {
     if (inputText.trim()) {
       const newMessage: Message = {
