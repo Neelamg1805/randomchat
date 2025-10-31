@@ -18,7 +18,7 @@ export type RootStackParamList = {
 
 export type DrawerParamList = {
   Home: undefined;
-  Chat: undefined;
+  Chat: { chatId?: string } | undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

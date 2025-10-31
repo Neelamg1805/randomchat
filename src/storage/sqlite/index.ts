@@ -1,43 +1,39 @@
-// import { enablePromise, openDatabase, SQLiteDatabase } from 'react-native-sqlite-storage';
-// import { createTableQureyMasterData, TN_MASTER_DATA, } from './model/masterData';
-// import { createTableQureyTaks, createTableQureyTaksFormData, TN_TASK_DATA, TN_TASK_FORM_DATA } from './model/tasks';
-// import { createTableQureyLeads, TN_LEADS } from './model/leads';
-// import { createTableQureyEstmations, TN_ESTIMATIONS } from './model/estimations';
+import { open } from 'react-native-quick-sqlite';
+import {
+  CREATE_TABLE_CHATS,
+  CREATE_TABLE_MESSAGES,
+  CREATE_TABLE_USERS,
+} from './model/chat';
 
-// enablePromise(true);
+let db: any = null;
 
-// export const getDBConnection = async () => {
-//     return openDatabase(
-//         { name: 'abiscrm.db', location: "default" },
-//         () => { },
-//         (error) => {
-//             console.error(error)
-//             throw Error("Could not connect to database")
-//         }
-//     )
-// }
+export const getDBConnection = () => {
+  if (!db) {
+    db = open({ name: 'randomchat.db', location: 'default' });
+    initializeDatabase();
+  }
+  return db;
+};
 
-// export const createTable = async () => {
-//     const db = await getDBConnection();
-//     try {
-//         // new table entry here
-//         await db.executeSql(`DROP TABLE IF EXISTS ${TN_MASTER_DATA}`);
-//         await db.executeSql(`DROP TABLE IF EXISTS ${TN_TASK_DATA}`);
-//         await db.executeSql(`DROP TABLE IF EXISTS ${TN_LEADS}`);
-//         await db.executeSql(`DROP TABLE IF EXISTS ${TN_TASK_FORM_DATA}`);
-//         await db.executeSql(`DROP TABLE IF EXISTS ${TN_ESTIMATIONS}`);
-//     } catch (error) {
-//         console.log("Table drop error:", error);
-//     }
+export const initializeDatabase = () => {
+  try {
+    const database = getDBConnection();
+    
+    // Create tables
+    database.execute(CREATE_TABLE_USERS);
+    database.execute(CREATE_TABLE_CHATS);
+    database.execute(CREATE_TABLE_MESSAGES);
+    
+    console.log('Database initialized successfully');
+  } catch (error) {
+    console.error('Error initializing database:', error);
+    throw error;
+  }
+};
 
-//     try {
-//         // new table entry here
-//         await db.executeSql(createTableQureyMasterData);
-//         await db.executeSql(createTableQureyTaks);
-//         await db.executeSql(createTableQureyLeads);
-//         await db.executeSql(createTableQureyTaksFormData);
-//         await db.executeSql(createTableQureyEstmations);
-//     } catch (error) {
-//         console.log("Error in Create Table:", error);
-//     }
-// };
+export const closeDatabase = () => {
+  if (db) {
+    db.close();
+    db = null;
+  }
+};

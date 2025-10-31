@@ -90,20 +90,6 @@ const styles = StyleSheet.create({
       borderTopWidth: 1,
       borderTopColor: colors.PURPLE_BORDER,
     },
-    attachmentButton: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
-      backgroundColor: colors.PURPLE_PRIMARY,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 10,
-    },
-    attachmentButtonText: {
-      color: colors.WHITE,
-      fontSize: 20,
-      fontWeight: 'bold',
-    },
     textInput: {
       flex: 1,
       backgroundColor: colors.PURPLE_INPUT_BG,
